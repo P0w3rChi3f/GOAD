@@ -2,7 +2,7 @@
 packer {
   required_plugins {
     proxmox = {
-      version = ">= 1.1.2"
+      version = ">= 1.1.7"
       source  = "github.com/hashicorp/proxmox"
     }
   }
@@ -40,14 +40,15 @@ source "proxmox-iso" "windows" {
   iso_file                 = "${var.iso_file}"
   memory                   = "${var.vm_memory}"
   network_adapters {
-    bridge = "vmbr3"
+    bridge = "vmbr1"
     model  = "virtio"
     vlan_tag = "10"
   }
   node                 = "${var.proxmox_node}"
   os                   = "${var.os}"
-  password             = "${var.proxmox_password}"
-  pool                 = "${var.proxmox_pool}"
+#  password             = "${var.proxmox_password}"
+  token                = "{var.proxmox_token}"
+#  pool                 = "${var.proxmox_pool}"
   proxmox_url          = "${var.proxmox_url}"
   sockets              = "${var.vm_sockets}"
   template_description = "${var.template_description}"

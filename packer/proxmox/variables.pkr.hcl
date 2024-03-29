@@ -1,6 +1,7 @@
 variable "proxmox_url" {}
 variable "proxmox_username" {}
-variable "proxmox_password" {}
+#variable "proxmox_password" {}
+variable "proxmox_token" {}
 variable "proxmox_skip_tls_verify" {}
 variable "proxmox_node" {}
 variable "proxmox_pool" {}
