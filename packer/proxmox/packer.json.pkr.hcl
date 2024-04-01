@@ -18,7 +18,7 @@ source "proxmox-iso" "windows" {
   }
   additional_iso_files {
     device   = "sata4"
-    iso_file = "local:iso/virtio-win.iso"
+    iso_file = "local:iso/virtio-win-0.1.229.iso"
     unmount  = true
   }
   additional_iso_files {
@@ -36,18 +36,24 @@ source "proxmox-iso" "windows" {
     storage_pool      = "${var.proxmox_vm_storage}"
     type              = "sata"
   }
+# bios                = "${var.bios}"
+/*  efi_config {
+    efi_storage_pool  = "Data"
+    pre_enrolled_keys = true
+    efi_type          = "4m"
+  } */
   insecure_skip_tls_verify = "${var.proxmox_skip_tls_verify}"
   iso_file                 = "${var.iso_file}"
   memory                   = "${var.vm_memory}"
   network_adapters {
-    bridge = "vmbr1"
+    bridge = "vmbr2"
     model  = "virtio"
     vlan_tag = "10"
   }
   node                 = "${var.proxmox_node}"
   os                   = "${var.os}"
-#  password             = "${var.proxmox_password}"
-  token                = "{var.proxmox_token}"
+  password             = "${var.proxmox_password}"
+#  token                = "{var.proxmox_token}"
 #  pool                 = "${var.proxmox_pool}"
   proxmox_url          = "${var.proxmox_url}"
   sockets              = "${var.vm_sockets}"

@@ -16,6 +16,9 @@ echo "Disable cloudbaseinit at start"
 # disable cloudbase-init start
 Set-Service -Name cloudbase-init -StartupType Disabled
 
+echo "moved to conf dir"
 # Run sysprep
 cd "C:\Program Files\Cloudbase Solutions\Cloudbase-Init\conf\"
+
+echo "start sysprep"
 start-process -FilePath "C:/Windows/system32/sysprep/sysprep.exe" -ArgumentList "/generalize /oobe /mode:vm /unattend:cloudbase-init-unattend.xml" -wait
