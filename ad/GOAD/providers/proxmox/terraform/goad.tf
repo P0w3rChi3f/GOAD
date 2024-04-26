@@ -17,7 +17,7 @@ variable "vm_config" {
       cores              = 2
       memory             = 3096
       clone              = "WinServer2019_x64"
-      dns                = "192.168.10.1"
+      dns                = "8.8.8.8"
       ip                 = "192.168.10.10/24"
       gateway            = "192.168.10.1"
     }
@@ -27,7 +27,7 @@ variable "vm_config" {
       cores              = 2
       memory             = 3096
       clone              = "WinServer2019_x64"
-      dns                = "192.168.10.1"
+      dns                = "8.8.8.8"
       ip                 = "192.168.10.11/24"
       gateway            = "192.168.10.1"
     }
@@ -37,7 +37,7 @@ variable "vm_config" {
       cores              = 2
       memory             = 3096
       clone              = "WinServer2016_x64"
-      dns                = "192.168.10.1"
+      dns                = "8.8.8.8"
       ip                 = "192.168.10.12/24"
       gateway            = "192.168.10.1"
     }
@@ -47,7 +47,7 @@ variable "vm_config" {
       cores              = 2
       memory             = 4096
       clone              = "WinServer2019_x64"
-      dns                = "192.168.10.1"
+      dns                = "8.8.8.8"
       ip                 = "192.168.10.22/24"
       gateway            = "192.168.10.1"
     }
@@ -57,7 +57,7 @@ variable "vm_config" {
       cores              = 2
       memory             = 4096
       clone              = "WinServer2016_x64"
-      dns                = "192.168.10.1"
+      dns                = "8.8.8.8"
       ip                 = "192.168.10.23/24"
       gateway            = "192.168.10.1"
     }
@@ -67,7 +67,7 @@ variable "vm_config" {
       cores              = 2
       memory             = 4096
       clone              = "Windows10_22h2_x64"
-      dns                = "192.168.10.1"
+      dns                = "8.8.8.8"
       ip                 = "192.168.10.30/24"
       gateway            = "192.168.10.1"
     }
@@ -81,6 +81,7 @@ resource "proxmox_virtual_environment_vm" "bgp" {
     description = each.value.desc
     node_name   = var.pm_node
     #pool_id     = var.pm_pool
+    tags        = goad_range
 
     operating_system {
       type = "win10"
