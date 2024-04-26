@@ -61,16 +61,16 @@ variable "vm_config" {
       ip                 = "192.168.10.23/24"
       gateway            = "192.168.10.1"
     }
-    #"ws01" = {
-    #  name               = "GOAD-WS01"
-    #  desc               = "WS01 - windows 10 - 192.168.10.30"
-    #  cores              = 2
-    #  memory             = 4096
-    #  clone              = "Windows10_22h2_x64"
-    #  dns                = "192.168.10.1"
-    #  ip                 = "192.168.10.30/24"
-    #  gateway            = "192.168.10.1"
-    #}
+    "ws01" = {
+      name               = "GOAD-WS01"
+      desc               = "WS01 - windows 10 - 192.168.10.30"
+      cores              = 2
+      memory             = 4096
+      clone              = "Windows10_22h2_x64"
+      dns                = "192.168.10.1"
+      ip                 = "192.168.10.30/24"
+      gateway            = "192.168.10.1"
+    }
   }
 }
 
@@ -80,7 +80,7 @@ resource "proxmox_virtual_environment_vm" "bgp" {
     name = each.value.name
     description = each.value.desc
     node_name   = var.pm_node
-    pool_id     = var.pm_pool
+    #pool_id     = var.pm_pool
 
     operating_system {
       type = "win10"
