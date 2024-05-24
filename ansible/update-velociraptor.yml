@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  name: Deploy Lab
+  tasks:
+
+- name: Update Velociraptor
+  hosts: default
+  roles:
+    - velociraptor-update

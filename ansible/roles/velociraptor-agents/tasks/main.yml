@@ -1,0 +1,29 @@
+---
+- name: Create for Velociraptor folder
+  ansible.windows.win_file:
+    path: c:\install\velociraptor
+    state: directory
+
+- name: copy velociraptor binaries
+  ansible.windows.win_copy:
+    src: ../files/velociraptor-windows.msi
+    dest: c:\install\velociraptor\velociraptor-windows.msi
+
+- name: Install velociraptor service
+  ansible.windows.win_command: msiexec /i c:\install\velociraptor\velociraptor-windows.msi
+
+- name: Stop velociraptor service
+  ansible.windows.win_shell: stop-service velociraptor
+
+- name: Remove Velociraptor Client config
+  ansible.windows.win_file:
+    path: 'C:\Program Files\Velociraptor\client.config.yaml'
+    state: absent
+
+- name: Copy new velociraptor client config
+  ansible.windows.win_copy:
+    src: ../files/client.config.yaml
+    dest: 'C:\Program Files\Velociraptor'
+
+- name: Start velociraptor service
+  ansible.windows.win_shell: start-service velociraptor

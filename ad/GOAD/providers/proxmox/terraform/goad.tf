@@ -81,7 +81,8 @@ resource "proxmox_virtual_environment_vm" "bgp" {
     description = each.value.desc
     node_name   = var.pm_node
     #pool_id     = var.pm_pool
-    tags        = goad_range
+    keyboard_layout = "en-us"
+    tags        = ["goad_range"]
 
     operating_system {
       type = "win10"
