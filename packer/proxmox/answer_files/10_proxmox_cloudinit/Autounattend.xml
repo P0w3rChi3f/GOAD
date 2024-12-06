@@ -165,6 +165,11 @@
                 </UserAccounts>
                 <OOBE>
                     <HideEULAPage>true</HideEULAPage>
+                    <SkipMachineOOBE>true</SkipMachineOOBE>
+                    <SkipUserOOBE>true</SkipUserOOBE>
+                    <HideLocalAccountScreen>true</HideLocalAccountScreen>
+                    <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+                    <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
                     <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
                     <NetworkLocation>Home</NetworkLocation>
                     <ProtectYourPC>1</ProtectYourPC>
@@ -262,6 +267,16 @@
                         <Order>16</Order>
                         <CommandLine>powershell -NoProfile -ExecutionPolicy Bypass -Command "F:\guest-agent\qemu-ga-x86_64.msi /quiet"</CommandLine>
                         <Description>Drivers install</Description>
+                    </SynchronousCommand>
+                    <SynchronousCommand wcm:action="add">
+                        <CommandLine>powershell.exe -command "enable-psremoting -skipnetworkprofilecheck"</CommandLine>
+                        <Order>1</Order>
+                        <Description>Enable PSRemoting</Description>
+                    </SynchronousCommand>
+                    <SynchronousCommand wcm:action="add">
+                        <CommandLine>powershell.exe -command "set-netconnectionProfile -NetworkCategory Private"</CommandLine>
+                        <Order>2</Order>
+                        <Description>Set Network to Public</Description>
                     </SynchronousCommand>
                     <!--<SynchronousCommand wcm:action="add">
                         <CommandLine>powershell -NoProfile -ExecutionPolicy Bypass -Command "msiexec /i G:\CloudbaseInitSetup_1_1_2_x64.msi /qn /l*v c:\log.txt"</CommandLine>

@@ -8,6 +8,7 @@ variable "vm_config" {
     dns                = string
     ip                 = string
     gateway            = string
+    vmid               = number
   }))
 
   default = {
@@ -20,6 +21,7 @@ variable "vm_config" {
       dns                = "8.8.8.8"
       ip                 = "192.168.10.10/24"
       gateway            = "192.168.10.1"
+      vmid               = 8110
     }
     "dc02" = {
       name               = "GOAD-DC02"
@@ -30,6 +32,7 @@ variable "vm_config" {
       dns                = "8.8.8.8"
       ip                 = "192.168.10.11/24"
       gateway            = "192.168.10.1"
+      vmid               = 8111
     }
     "dc03" = {
       name               = "GOAD-DC03"
@@ -40,6 +43,7 @@ variable "vm_config" {
       dns                = "8.8.8.8"
       ip                 = "192.168.10.12/24"
       gateway            = "192.168.10.1"
+      vmid               = 8112
     }
     "srv02" = {
       name               = "GOAD-SRV02"
@@ -50,6 +54,7 @@ variable "vm_config" {
       dns                = "8.8.8.8"
       ip                 = "192.168.10.22/24"
       gateway            = "192.168.10.1"
+      vmid               = 8122
     }
     "srv03" = {
       name               = "GOAD-SRV03"
@@ -60,6 +65,7 @@ variable "vm_config" {
       dns                = "8.8.8.8"
       ip                 = "192.168.10.23/24"
       gateway            = "192.168.10.1"
+      vmid               = 8123
     }
     "ws01" = {
       name               = "GOAD-WS01"
@@ -70,6 +76,7 @@ variable "vm_config" {
       dns                = "8.8.8.8"
       ip                 = "192.168.10.30/24"
       gateway            = "192.168.10.1"
+      vmid               = 8130
     }
   }
 }
@@ -82,6 +89,7 @@ resource "proxmox_virtual_environment_vm" "bgp" {
     node_name   = var.pm_node
     #pool_id     = var.pm_pool
     keyboard_layout = "en-us"
+    vm_id = each.value.vmid
     tags        = ["goad_range"]
 
     operating_system {
